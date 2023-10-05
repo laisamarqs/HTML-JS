@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário com Validação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="meuFormulario">
+        <label for="campoA">Campo A:</label>
+        <input type="number" id="campoA" name="campoA" required>
+
+        <label for="campoB">Campo B:</label>
+        <input type="number" id="campoB" name="campoB" required>
+
+        <button type="button" onclick="validarFormulario()">Submeter</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function validarFormulario() {
+            // Obter os valores dos campos A e B
+            var campoA = document.getElementById("campoA").value;
+            var campoB = document.getElementById("campoB").value;
+
+            // Verificar se B é maior que A
+            if (parseInt(campoB) > parseInt(campoA)) {
+                exibirMensagem("Formulário válido! B é maior que A.", true);
+            } else {
+                exibirMensagem("Formulário inválido! B deve ser maior que A.", false);
+            }
+        }
+
+        function exibirMensagem(mensagem, isValid) {
+            var resultDiv = document.getElementById("result");
+
+            // Limpar mensagem anterior
+            resultDiv.innerHTML = "";
+
+            // Criar elemento de mensagem
+            var mensagemElement = document.createElement("p");
+            mensagemElement.textContent = mensagem;
+
+            // Adicionar classe de estilo com base na validação
+            mensagemElement.classList.add(isValid ? "valid" : "invalid");
+
+            // Adicionar mensagem à div de resultados
+            resultDiv.appendChild(mensagemElement);
+        }
+    </script>
+
+</body>
+</html>
